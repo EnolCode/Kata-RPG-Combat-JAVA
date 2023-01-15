@@ -1,42 +1,97 @@
 package com.factoriaf5.kata;
 
 public class Character {
-    private  Integer health = 1000;
-    private Integer level = 1;
-    private Boolean alive = true;
-    
+
+    private int initHealth = 1000;
+    private int actualHealth = initHealth;
+    private int initDamage = 200;
+    private int actualDamage = initDamage;
+    private int initSanation = 50;
+    private int actualSanation = initSanation;
+    private int initLevel = 1;
+    private int actualLevel = initLevel;
+    private boolean alive = true;
+
     public Character() {
-        this.health = getHealth();
-        this.level = getLevel();
-        this.alive = getAlive();
+        this.initHealth = getInitHealth();
+        this.actualHealth = getActualHealth();
+        this.initDamage = getInitDamage();
+        this.actualDamage = getActualDamage();
+        this.initSanation = getInitSanation();
+        this.actualSanation = getActualSanation();
+        this.initLevel = getInitLevel();
+        this.actualLevel = getActualLevel();
+        this.alive = isAlive();
     }
-
-    public Integer getHealth() {
-        return health;
+    public int getInitHealth() {
+        return initHealth;
     }
-
-    public void setHealth(Integer health) {
-        this.health = health;
+    public void setInitHealth(int initHealth) {
+        this.initHealth = initHealth;
     }
-
-    public Integer getLevel() {
-        return level;
+    public int getActualHealth() {
+        return actualHealth;
     }
-
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setActualHealth(int actualHealth) {
+        this.actualHealth = actualHealth;
     }
-
-    public Boolean getAlive() {
+    public int getInitDamage() {
+        return initDamage;
+    }
+    public void setInitDamage(int initDamage) {
+        this.initDamage = initDamage;
+    }
+    public int getActualDamage() {
+        return actualDamage;
+    }
+    public void setActualDamage(int actualDamage) {
+        this.actualDamage = actualDamage;
+    }
+    public int getInitSanation() {
+        return initSanation;
+    }
+    public void setInitSanation(int initSanation) {
+        this.initSanation = initSanation;
+    }
+    public int getActualSanation() {
+        return actualSanation;
+    }
+    public void setActualSanation(int actualSanation) {
+        this.actualSanation = actualSanation;
+    }
+    public int getInitLevel() {
+        return initLevel;
+    }
+    public void setInitLevel(int initLevel) {
+        this.initLevel = initLevel;
+    }
+    public int getActualLevel() {
+        return actualLevel;
+    }
+    public void setActualLevel(int actualLevel) {
+        this.actualLevel = actualLevel;
+    }
+    public boolean isAlive() {
         return alive;
     }
-
-    public void setAlive(Boolean alive) {
-        this.alive = alive;
+    public void setAlive(boolean alive) {
+        this.alive = alive; 
     }
 
-    public Integer damage (Integer dmg){
-        return  dmg - this.health;
+    public void setDamage(Character character) {
+        character.actualHealth -= this.initDamage;
+        setActualHealth(character.actualHealth);
+        if(character.actualHealth <= 0){
+            this.actualHealth = 0;
+            setActualHealth(character.actualHealth);
+            character.setAlive(false);
+        }
     }
 
+    public void setSanation(Character character) {
+        if(this.actualHealth > 0 && this.actualHealth < 1000){
+        character.actualHealth += this.initSanation; 
+        }
+        setActualHealth(character.actualHealth);
+    }
 }
