@@ -58,17 +58,11 @@ public class CharacterTest {
         assertEquals(450, miCharacter.getActualHealth());
     } 
 
+    @Test
+    public void checked_damage2() {
+        Character miCharacter = new Character();
+        miCharacter.setDamage(miCharacter);
+        assertEquals(1000, miCharacter.getActualHealth());
+    }
     
-    // @Test
-    // public void 5_levels_more() {
-    //     Character miCharacter = new Character();
-    //     Character youCharacter = new Character();
-    //     miCharacter.setInitLevel(10);
-    //     youCharacter.setInitLevel(1);
-    //     assertEquals(450, miCharacter.getActualHealth());
-    // }
-
-
-
-
 }
