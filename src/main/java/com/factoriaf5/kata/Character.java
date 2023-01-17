@@ -78,8 +78,11 @@ public class Character {
         this.alive = alive; 
     }
 
-    public void setDamage(Character character) {
+    public void attackCharacter(Character character) {
         if(this.equals(character)) return;
+        if(character.getActualLevel() > 5){
+            character.setActualDamage(300);
+        }
         character.actualHealth -= this.initDamage;
         setActualHealth(character.actualHealth);
         if(character.actualHealth <= 0){
@@ -89,10 +92,22 @@ public class Character {
         }
     }
 
-    public void setSanation(Character character) {
+    public void healCharacter(Character character) {
         if(this.actualHealth > 0 && this.actualHealth < 1000){
         character.actualHealth += this.initSanation; 
         }
         setActualHealth(character.actualHealth);
+    }
+
+    public void attackDamageLevel(Character character1, Character character2) {
+        int level1 = character1.actualLevel;
+        int level2 = character2.actualLevel;
+        int result = 0;
+        for(int i = level1; i <= level2; i++ ){
+            result++;
+        }
+        if(result > 5){
+            character1.setActualHealth(100);
+        }
     }
 }

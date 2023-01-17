@@ -30,7 +30,7 @@ public class CharacterTest {
     public void checked_damage() {
         Character miCharacter = new Character();
         Character youCharacter = new Character();
-        youCharacter.setDamage(miCharacter);
+        youCharacter.attackCharacter(miCharacter);
         assertEquals(800, miCharacter.getActualHealth());
     }
 
@@ -38,31 +38,54 @@ public class CharacterTest {
     public void character_is_die() {
         Character miCharacter = new Character();
         Character youCharacter = new Character();
-        youCharacter.setDamage(miCharacter);
-        youCharacter.setDamage(miCharacter);
-        youCharacter.setDamage(miCharacter);
-        youCharacter.setDamage(miCharacter);
-        youCharacter.setDamage(miCharacter);
-        youCharacter.setDamage(miCharacter);
+        youCharacter.attackCharacter(miCharacter);
+        youCharacter.attackCharacter(miCharacter);
+        youCharacter.attackCharacter(miCharacter);
+        youCharacter.attackCharacter(miCharacter);
+        youCharacter.attackCharacter(miCharacter);
+        youCharacter.attackCharacter(miCharacter);
         assertEquals(false, miCharacter.isAlive() );
     }
 
     @Test
     public void checked_sanation() {
         Character miCharacter = new Character();
+        miCharacter.setActualLevel(10);
         Character youCharacter = new Character();
-        youCharacter.setDamage(miCharacter);
-        youCharacter.setDamage(miCharacter);
-        youCharacter.setDamage(miCharacter);
-        youCharacter.setSanation(miCharacter);
+        youCharacter.setActualLevel(1);
+        youCharacter.attackCharacter(miCharacter);
+        youCharacter.attackCharacter(miCharacter);
+        youCharacter.attackCharacter(miCharacter);
+        youCharacter.healCharacter(miCharacter);
         assertEquals(450, miCharacter.getActualHealth());
     } 
 
     @Test
-    public void checked_damage2() {
+    public void checked_damage_myself() {
         Character miCharacter = new Character();
-        miCharacter.setDamage(miCharacter);
+        miCharacter.attackCharacter(miCharacter);
         assertEquals(1000, miCharacter.getActualHealth());
     }
+
+    // @Test
+    // public void checked_damage_level() {
+    //     Character miCharacter = new Character();
+    //     miCharacter.setActualLevel(10);
+    //     Character youCharacter = new Character();
+    //     youCharacter.setActualLevel(1);
+    //     miCharacter.attackDamageLevel(miCharacter,youCharacter);
+    //     assertEquals(100, youCharacter.getActualHealth());
+    // }
+
+      @Test
+    public void checked_damage_level() {
+        Character miCharacter = new Character();
+        miCharacter.setActualLevel(10);
+        Character youCharacter = new Character();
+        miCharacter.attackCharacter(youCharacter);
+        assertEquals(700, youCharacter.getActualHealth());
+    }
+
+    
     
 }
