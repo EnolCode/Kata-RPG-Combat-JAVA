@@ -80,11 +80,15 @@ public class Character {
 
     public void attackCharacter(Character character) {
         if(this.equals(character)) return;
-        if(character.getActualLevel() > 5){
-            character.setActualDamage(300);
+        double damageActual = getActualDamage();
+        if(character.getActualLevel() - this.getActualLevel() > 5){
+            damageActual = getActualDamage() * 0.5;
         }
-        character.actualHealth -= this.initDamage;
-        setActualHealth(character.actualHealth);
+        if(this.getActualLevel() - character.getActualLevel() > 5){
+            damageActual = getActualDamage() * 1.5;
+        }
+        character.actualHealth -= damageActual;
+        character.setActualHealth(character.actualHealth);
         if(character.actualHealth <= 0){
             this.actualHealth = 0;
             setActualHealth(character.actualHealth);
@@ -97,17 +101,5 @@ public class Character {
         character.actualHealth += this.initSanation; 
         }
         setActualHealth(character.actualHealth);
-    }
-
-    public void attackDamageLevel(Character character1, Character character2) {
-        int level1 = character1.actualLevel;
-        int level2 = character2.actualLevel;
-        int result = 0;
-        for(int i = level1; i <= level2; i++ ){
-            result++;
-        }
-        if(result > 5){
-            character1.setActualHealth(100);
-        }
     }
 }

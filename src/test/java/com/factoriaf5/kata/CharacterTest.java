@@ -57,7 +57,7 @@ public class CharacterTest {
         youCharacter.attackCharacter(miCharacter);
         youCharacter.attackCharacter(miCharacter);
         youCharacter.healCharacter(miCharacter);
-        assertEquals(450, miCharacter.getActualHealth());
+        assertEquals(400, miCharacter.getActualHealth());
     } 
 
     @Test
@@ -67,25 +67,13 @@ public class CharacterTest {
         assertEquals(1000, miCharacter.getActualHealth());
     }
 
-    // @Test
-    // public void checked_damage_level() {
-    //     Character miCharacter = new Character();
-    //     miCharacter.setActualLevel(10);
-    //     Character youCharacter = new Character();
-    //     youCharacter.setActualLevel(1);
-    //     miCharacter.attackDamageLevel(miCharacter,youCharacter);
-    //     assertEquals(100, youCharacter.getActualHealth());
-    // }
-
       @Test
     public void checked_damage_level() {
         Character miCharacter = new Character();
+        Character youCharacter = new Character();   
+        youCharacter.setActualLevel(100);
         miCharacter.setActualLevel(10);
-        Character youCharacter = new Character();
         miCharacter.attackCharacter(youCharacter);
-        assertEquals(700, youCharacter.getActualHealth());
+        assertEquals(900, youCharacter.getActualHealth());
     }
-
-    
-    
 }
