@@ -11,6 +11,31 @@ public class Character {
     private int initLevel = 1;
     private int actualLevel = initLevel;
     private boolean alive = true;
+    private int distanceEnemy;
+    private int range;
+    
+    public int getRange() {
+        return range;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
+    public void setDistanceEnemy( int distanceEnemy ) {
+        this.distanceEnemy = distanceEnemy;
+    }
+
+    public int getDistanceEnemy() {
+        return distanceEnemy;
+    }
+
+    public boolean canAttackRange() {
+        if (getDistanceEnemy() <= range) {
+            return true;
+        }
+        return false;
+    }
 
     public Character() {
         this.initHealth = getInitHealth();
@@ -87,6 +112,7 @@ public class Character {
         if(this.getActualLevel() - character.getActualLevel() > 5){
             damageActual = getActualDamage() * 1.5;
         }
+        // if(canAttackRange())
         character.actualHealth -= damageActual;
         character.setActualHealth(character.actualHealth);
         if(character.actualHealth <= 0){
@@ -102,4 +128,5 @@ public class Character {
         }
         setActualHealth(character.actualHealth);
     }
+    
 }

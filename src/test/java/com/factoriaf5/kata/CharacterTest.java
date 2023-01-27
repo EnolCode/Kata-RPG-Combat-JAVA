@@ -76,4 +76,44 @@ public class CharacterTest {
         miCharacter.attackCharacter(youCharacter);
         assertEquals(900, youCharacter.getActualHealth());
     }
+
+    @Test
+    public void meleeCharacter_can_attack() {
+        MeleeCharacter miCharacter = new MeleeCharacter(2);
+        Character youCharacter = new Character();  
+
+        miCharacter.attackCharacter(youCharacter);
+        
+        assertEquals(800, youCharacter.getActualHealth());
+    }
+
+    @Test
+    public void meleeCharacter_cant_attack() {
+        MeleeCharacter miCharacter = new MeleeCharacter(3);
+        Character youCharacter = new Character();  
+
+        miCharacter.attackCharacter(youCharacter);
+        
+        assertEquals(1000, youCharacter.getActualHealth());
+    }
+
+    @Test
+    public void RangeCharacter_can_attack() {
+        RangeCharacter miCharacter = new RangeCharacter(3);
+        Character youCharacter = new Character();  
+
+        miCharacter.attackCharacter(youCharacter);
+        
+        assertEquals(800, youCharacter.getActualHealth());
+    }
+
+    @Test
+    public void RangeCharacter_cant_attack() {
+        RangeCharacter miCharacter = new RangeCharacter(21);
+        Character youCharacter = new Character();  
+
+        miCharacter.attackCharacter(youCharacter);
+        
+        assertEquals(1000, youCharacter.getActualHealth());
+    }
 }
