@@ -9,15 +9,15 @@ public class CharacterTest {
     private RangeCharacter legolas = new RangeCharacter(12);
     private MeleeCharacter mcGregor = new MeleeCharacter(2);
     private MeleeCharacter topuria = new MeleeCharacter(2);
-
     Faction archers = new Faction("archers");
+    Faction strikers = new Faction("strikers");
+
     public CharacterTest() {
         archers.addCharacter(legolas);
         strikers.addCharacter(mcGregor);
         strikers.addCharacter(topuria);
     }
 
-    Faction strikers = new Faction("strikers");
     // strikers.addCharacter(mcGregor);
 
     @Test
@@ -33,6 +33,12 @@ public class CharacterTest {
     @Test
     public void Character_Is_Alive() {
         assertEquals(true,mcGregor.isAlive());
+    }
+
+    @Test
+    public void  no_faction_default() {
+        RangeCharacter legolinas = new RangeCharacter(2);
+        assertEquals(null,legolinas.getFaction());
     }
 
     // Nexts Tasks

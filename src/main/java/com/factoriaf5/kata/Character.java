@@ -48,8 +48,9 @@ public class Character {
         this.initLevel = getInitLevel();
         this.actualLevel = getActualLevel();
         this.alive = isAlive();
-        this.faction = getFaction();
+        this.faction = null;
     }
+
     public Faction getFaction() {
         return faction;
     }
@@ -112,10 +113,14 @@ public class Character {
     public void setAlive(boolean alive) {
         this.alive = alive; 
     }
+    public boolean canAttack(Character target) {
+        return this.faction != target.getFaction();
+    }
 
     public void attackCharacter(Character character) {
         if(this.equals(character)) return;
-        if(this.getFaction().getName().equals(character.getFaction().getName())) return;
+        if(character.getFaction() != null && this.getFaction() != null && this.getFaction().getName().equals(character.getFaction().getName())) return;
+
         double damageActual = getActualDamage();
         if(character.getActualLevel() - this.getActualLevel() > 5){
             damageActual = getActualDamage() * 0.5;
@@ -130,10 +135,11 @@ public class Character {
             setActualHealth(character.actualHealth);
             character.setAlive(false);
         }
+   
     }
 
     public void healCharacter(Character character) {
-        if(this.getFaction().getName().equals(character.getFaction().getName())){
+        if(character.getFaction() != null && this.getFaction() != null && this.getFaction().getName().equals(character.getFaction().getName())){
         if(character.actualHealth > 0 && character.actualHealth < 1000){
         character.actualHealth += character.initSanation; 
         }}

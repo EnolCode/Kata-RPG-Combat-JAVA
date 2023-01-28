@@ -3,7 +3,7 @@ package com.factoriaf5.kata;
 import java.util.*;
 
 
-public class Faction  {
+public class Faction extends Character {
     private String name;
     private List<Character> characters;
 
@@ -32,12 +32,4 @@ public class Faction  {
     public void setCharacters(List<Character> characters) {
         this.characters = characters;
     }
-
-    // @Override
-    // public void attackCharacter(Character character) {
-    //     if(this.getFaction().getName() == character.getFaction().getName()) return;
-    //     else{
-    //         super.attackCharacter(character);
-    //     }
-    // }
 }

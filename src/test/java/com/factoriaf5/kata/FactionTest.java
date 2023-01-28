@@ -13,40 +13,44 @@ public class FactionTest {
     Faction strikers = new Faction("strikers");
     
 
+    public FactionTest() {
+        strikers.addCharacter(mcGregor);
+        strikers.addCharacter(topuria);
+        // archers.addCharacter(legolas);
+    }
+
     @Test
     void add_character_faction() {
         archers.addCharacter(legolas);
-
-        assertEquals("archer", legolas.getFaction().getName());
+        assertEquals("archers", legolas.getFaction().getName());
     }
 
     @Test
     void character_dont_attack_allies() {
-        archers.addCharacter(legolas);
-        archers.addCharacter(mcGregor);
-        mcGregor.attackCharacter(legolas);
-        assertEquals(1000, mcGregor.getActualHealth());
+        mcGregor.attackCharacter(topuria);
+        assertEquals(1000, topuria.getActualHealth());
     }
 
     @Test
     void character_attack() {
-        archers.addCharacter(legolas);
-        strikers.addCharacter(mcGregor);
         legolas.attackCharacter(mcGregor);
         assertEquals(800, mcGregor.getActualHealth());
     }
 
     @Test
     void enemys_cant_heal(){
-        archers.addCharacter(legolas);
-        strikers.addCharacter(mcGregor);
-        strikers.addCharacter(topuria);
+        legolas.attackCharacter(mcGregor);
+        legolas.attackCharacter(mcGregor);
+        legolas.healCharacter(mcGregor);
+        assertEquals(600, mcGregor.getActualHealth());
+    }
+
+    @Test
+    void allies_can_heal(){
         legolas.attackCharacter(mcGregor);
         legolas.attackCharacter(mcGregor);
         topuria.healCharacter(mcGregor);
-        assertEquals(600, mcGregor.getActualHealth());
-
-        
+        assertEquals(650, mcGregor.getActualHealth());
     }
 
 }
