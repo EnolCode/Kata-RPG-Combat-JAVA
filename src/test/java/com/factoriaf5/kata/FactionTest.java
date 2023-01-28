@@ -6,36 +6,47 @@ import org.junit.jupiter.api.Test;
 
 public class FactionTest {
 
+    private RangeCharacter legolas = new RangeCharacter(12);
+    private MeleeCharacter mcGregor = new MeleeCharacter(2);
+    private MeleeCharacter topuria = new MeleeCharacter(2);
+    Faction archers = new Faction("archers");
+    Faction strikers = new Faction("strikers");
+    
+
     @Test
     void add_character_faction() {
-        RangeCharacter legolas = new RangeCharacter(10);
-        Faction archer = new Faction("archer");
-        archer.addCharacter(legolas);
+        archers.addCharacter(legolas);
 
         assertEquals("archer", legolas.getFaction().getName());
     }
 
     @Test
     void character_dont_attack_allies() {
-        RangeCharacter legolas = new RangeCharacter(10);
-        RangeCharacter mcGregor = new RangeCharacter(10);
-        Faction archers = new Faction("archer");
         archers.addCharacter(legolas);
         archers.addCharacter(mcGregor);
-        legolas.attackCharacter(mcGregor);
+        mcGregor.attackCharacter(legolas);
         assertEquals(1000, mcGregor.getActualHealth());
     }
 
     @Test
-    void character_attack_() {
-        RangeCharacter legolas = new RangeCharacter(10);
-        RangeCharacter mcGregor = new RangeCharacter(10);
-        Faction archers = new Faction("archer");
-        Faction strikers = new Faction("archer2");
+    void character_attack() {
         archers.addCharacter(legolas);
         strikers.addCharacter(mcGregor);
         legolas.attackCharacter(mcGregor);
         assertEquals(800, mcGregor.getActualHealth());
+    }
+
+    @Test
+    void enemys_cant_heal(){
+        archers.addCharacter(legolas);
+        strikers.addCharacter(mcGregor);
+        strikers.addCharacter(topuria);
+        legolas.attackCharacter(mcGregor);
+        legolas.attackCharacter(mcGregor);
+        topuria.healCharacter(mcGregor);
+        assertEquals(600, mcGregor.getActualHealth());
+
+        
     }
 
 }

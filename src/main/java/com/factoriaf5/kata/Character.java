@@ -133,9 +133,10 @@ public class Character {
     }
 
     public void healCharacter(Character character) {
-        if(this.actualHealth > 0 && this.actualHealth < 1000){
-        character.actualHealth += this.initSanation; 
-        }
+        if(this.getFaction().getName().equals(character.getFaction().getName())){
+        if(character.actualHealth > 0 && character.actualHealth < 1000){
+        character.actualHealth += character.initSanation; 
+        }}
         setActualHealth(character.actualHealth);
     }
     
