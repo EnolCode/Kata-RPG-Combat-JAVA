@@ -112,7 +112,6 @@ public class Character {
         if(this.getActualLevel() - character.getActualLevel() > 5){
             damageActual = getActualDamage() * 1.5;
         }
-        // if(canAttackRange())
         character.actualHealth -= damageActual;
         character.setActualHealth(character.actualHealth);
         if(character.actualHealth <= 0){
