@@ -13,6 +13,7 @@ public class Character {
     private boolean alive = true;
     private int distanceEnemy;
     private int range;
+    private Faction faction;
     
     public int getRange() {
         return range;
@@ -47,7 +48,16 @@ public class Character {
         this.initLevel = getInitLevel();
         this.actualLevel = getActualLevel();
         this.alive = isAlive();
+        this.faction = getFaction();
     }
+    public Faction getFaction() {
+        return faction;
+    }
+
+    public void setFaction(Faction faction) {
+        this.faction = faction;
+    }
+
     public int getInitHealth() {
         return initHealth;
     }
@@ -105,6 +115,7 @@ public class Character {
 
     public void attackCharacter(Character character) {
         if(this.equals(character)) return;
+        if(this.getFaction().getName().equals(character.getFaction().getName())) return;
         double damageActual = getActualDamage();
         if(character.getActualLevel() - this.getActualLevel() > 5){
             damageActual = getActualDamage() * 0.5;
